@@ -44,23 +44,23 @@ public class Aluno {
 	private String dataAnalise;
 	
 	public Aluno(){}
-	
-	public Aluno(Long id, String nome, String matricula, String curso, String tipoAtividade, String categoria,
-			Long cargaHoraria, String estado, String contentType, String nomeArquivo, byte[] data) {
+
+	public Aluno(String nome, String matricula, String curso, String tipoAtividade, String categoria, Long cargaHoraria,
+			String dataSolicitacao, String contentType, String nomeArquivo) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.matricula = matricula;
 		this.curso = curso;
 		this.tipoAtividade = tipoAtividade;
 		this.categoria = categoria;
 		this.cargaHoraria = cargaHoraria;
-		this.estado = estado;
 		this.contentType = contentType;
 		this.nomeArquivo = nomeArquivo;
-		this.data = data;
+		this.estado = "SUBMETIDO";
 		this.dataSolicitacao = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
+
+
 
 	public Long getId() {
 		return id;

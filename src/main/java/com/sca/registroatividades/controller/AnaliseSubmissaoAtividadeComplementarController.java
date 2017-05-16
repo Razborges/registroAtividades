@@ -2,6 +2,8 @@ package com.sca.registroatividades.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,8 @@ public class AnaliseSubmissaoAtividadeComplementarController {
 	AnaliseRegistrosAtividadeService service;
 	
 	@RequestMapping(value = "/homeAnalise", method = RequestMethod.GET)
-	public ModelAndView paginaInicialAnalise(){
-		ModelAndView model = new ModelAndView("analiseRegistros.jsp");
-		
+	public ModelAndView paginaInicialAnalise(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("/analiseRegistros.jsp");
 		List<Aluno> atividades = service.homeAnaliseAtividades("1111111");
 		//System.out.println(atividades); // OK
 		model.addObject("atividades", atividades);

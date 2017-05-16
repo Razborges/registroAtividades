@@ -213,5 +213,11 @@ public class Aluno {
 	public void setDataAnalise(String dataAnalise) {
 		this.dataAnalise = dataAnalise;
 	}
+
+	@Override
+	public String toString() {
+		return "Aluno [id=" + id + ", nome=" + nome + ", matricula=" + matricula + ", curso=" + curso + ", estado="
+				+ estado + ", contentType=" + contentType + "]";
+	}
 	
 }

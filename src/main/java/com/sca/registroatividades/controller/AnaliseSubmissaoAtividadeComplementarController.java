@@ -22,7 +22,8 @@ public class AnaliseSubmissaoAtividadeComplementarController {
 	public ModelAndView paginaInicialAnalise(){
 		ModelAndView model = new ModelAndView("analiseRegistros.jsp");
 		
-		List<Aluno> atividades = service.homeAnaliseAtividades("1111");
+		List<Aluno> atividades = service.homeAnaliseAtividades("1111111");
+		//System.out.println(atividades); // OK
 		model.addObject("atividades", atividades);
 		return model;
 	}

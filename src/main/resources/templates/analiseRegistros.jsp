@@ -16,13 +16,14 @@
 	<div class="container">
 		<c:forEach items="${atividades}" var="atividade">
 		<div class="row">
-			<h1 class="col-md-12 text-center">AvaliaÁ„o de Certificados</h1>
-			<p class="col-md-6">Aluno: ${atividade.nomeAluno }</p>
-			<p class="col-md-6 text-right">Data: ${data }</p>
+			<h1 class="col-md-12 text-center">Avaliação de Certificados</h1>
+			<p class="col-md-6">Aluno: ${atividade.nome }</p>
+			<p class="col-md-6 text-right">Data: ${dataSolicitacao }</p>
 		</div>
 		<div class="row">
-			<p class="col-md-6">Atividade: ${atividade.cargaHoraria }</p>
-			<p class="col-md-6 text-right">Carga-hor·ria: ${atividade.cargaHoraria }</p>
+			<p class="col-md-6">Categoria: ${atividade.categoria }</p>
+			<p class="col-md-6">Atividade: ${atividade.atividade }</p>
+			<p class="col-md-6 text-right">Carga-horária: ${atividade.cargaHoraria }</p>
 		</div>
 		<div class="row text-center">
 			<a class="btn btn-danger" href="">Recusar</a>
@@ -30,20 +31,20 @@
 		</div>
 		
 		<div class="row text-center">
-			<c:if test="${typeFile == 1}">
-				<!-- TESTAR O DOCUMENTO SE FOR PDF USAR ABAIXO
+			<!--<c:if test="${atividade.contentType == application/pdf}">
+				 TESTAR O DOCUMENTO SE FOR PDF USAR ABAIXO
 				<iframe src = "${pageContext.request.contextPath}/ViewerJS/#../upload/${atividade.arquivo}" width='100%' height='800' allowfullscreen webkitallowfullscreen>
 				</iframe>
 			</c:if>
-			<c:if test="${typeFile == 0}">-->
+			<c:if test="${atividade.contentType == image/jpg || atividade.contentType == image/png}">-->
 				<!-- E SE FOR JPG PNG ABRIR O ABAIXO
 				<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${atividade.arquivo}" data-lightbox="example-1">
 					<img class="example-image" src="${pageContext.request.contextPath}/upload/${atividade.arquivo}" />
 				</a>
 			</c:if> -->
-			<c:if test="${typeFile == -1}">
+			<c:else>
 				<p><strong>Erro ao abrir o arquivo</strong></p>
-			</c:if>
+			</c:else>
 		</div>
 		</c:forEach>
 	</div>

@@ -25,20 +25,35 @@ public class AnaliseRegistrosAtividadeService {
 		List<Aluno> atividades = new ArrayList<Aluno>();
 		
 		Professor professor = getProfessorByMatricula(matricula);
+		//System.out.println(matricula); // OK
+		//System.out.println(professor.getNome()); // OK
 		
 		List<String> siglasCursos = new ArrayList<String>();
 		
 		siglasCursos = professor.getCursos();
+		//System.out.println(siglasCursos); // OK
 		
 		for(String curso : siglasCursos) {
-			alunos = alunoRepo.findAlunosByCurso(curso);
+			//System.out.println(curso); // OK
+			List<Aluno> aux = alunoRepo.findAlunosByCurso(curso);
+			alunos.addAll(aux);
 		}
 		
+		//System.out.println(alunos); // OK
 		for(Aluno aluno : alunos) {
-			if(aluno.getEstado() == "EM_AVALIAÇÃO" || aluno.getEstado() == "SUBMETIDO"){
+			//System.out.println(aluno); // OK
+			//System.out.println(aluno.getEstado()); // OK
+			if(aluno.getEstado().equals("EM_AVALIACAO")){
+				//System.out.println(aluno); // OK
+				atividades.add(aluno);
+			}
+			if(aluno.getEstado().equals("SUBMETIDO")){
+				//System.out.println(aluno); // OK
 				atividades.add(aluno);
 			}
 		}
+		
+		//System.out.println(atividades); //OK
 		
 		return atividades;
 	}

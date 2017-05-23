@@ -43,7 +43,7 @@ public class AnaliseRegistrosAtividadeService {
 		for(Aluno aluno : alunos) {
 			//System.out.println(aluno); // OK
 			//System.out.println(aluno.getEstado()); // OK
-			if(aluno.getEstado().equals("EM_AVALIACAO")){
+			if(aluno.getEstado().equals("EM_ANÁLISE")){
 				//System.out.println(aluno); // OK
 				atividades.add(aluno);
 			}
@@ -56,6 +56,22 @@ public class AnaliseRegistrosAtividadeService {
 		//System.out.println(atividades); //OK
 		
 		return atividades;
+	}
+	
+	public Boolean aprovarRegistroAtividade(String idAluno, String matriculaUsuario) {
+		Professor professor = getProfessorByMatricula(matriculaUsuario);
+		Aluno aluno = alunoRepo.findOne(Long.parseLong(idAluno));
+		aluno.aprovarRegistroAtividadeAluno(professor.getId(), professor.getMatricula(), professor.getNome());
+		alunoRepo.save(aluno);
+		return true;
+	}
+	
+	public Boolean recusarRegistroAtividade(String idAluno, String justificativa, String matriculaUsuario) {
+		Professor professor = getProfessorByMatricula(matriculaUsuario);
+		Aluno aluno = alunoRepo.findOne(Long.parseLong(idAluno));
+		aluno.recusarRegistroAtividadeAluno(justificativa, professor.getId(), professor.getMatricula(), professor.getNome());
+		alunoRepo.save(aluno);
+		return true;
 	}
 	
 	private Professor getProfessorByMatricula(String matricula){

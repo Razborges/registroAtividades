@@ -220,4 +220,23 @@ public class Aluno {
 				+ estado + ", contentType=" + contentType + "]";
 	}
 	
+	public void aprovarRegistroAtividadeAluno(Long idAvaliador, String matriculaAvaliador, String nomeAvaliador) {
+		this.estado = "DEFERIDO";
+		this.aprovado = true;
+		this.dataAnalise = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.idAvaliador = idAvaliador;
+		this.matriculaAvaliador = matriculaAvaliador;
+		this.nomeAvaliador = nomeAvaliador;
+	}
+	
+	public void recusarRegistroAtividadeAluno(String justificativa, Long idAvaliador, String matriculaAvaliador, String nomeAvaliador) {
+		this.estado = "INDEFERIDO";
+		this.negado = true;
+		this.dataAnalise = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.idAvaliador = idAvaliador;
+		this.matriculaAvaliador = matriculaAvaliador;
+		this.nomeAvaliador = nomeAvaliador;
+		this.justificativa = justificativa;
+	}
+	
 }

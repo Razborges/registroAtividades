@@ -33,14 +33,23 @@ public class AnaliseSubmissaoAtividadeComplementarController {
 	
 	@RequestMapping(value = "/homeAnalise/aprovar/{id}", method = RequestMethod.POST)
 	public String aprovarAnalise(@PathVariable String id){
-		System.out.println(id);
-		return "/analiseAtividades/homeAnalise";
+		boolean confirmacao = service.aprovarRegistroAtividade(id, "1111111");
+		if(confirmacao == true) {
+			return "redirect:/analiseAtividades/homeAnalise";
+		} else {
+			 //retornar uma exceção
+			return "mensagem de erro";
+		}
 	}
 	
 	@RequestMapping(value = "/homeAnalise/recusar/{id}", method = RequestMethod.POST)
 	public String recusarAnalise(@PathVariable String id, @RequestParam String justificativa){
-		System.out.println(id);
-		System.out.println(justificativa);
-		return "/analiseAtividades/homeAnalise";
+		boolean confirmacao = service.recusarRegistroAtividade(id, justificativa, "1111111");
+		if(confirmacao == true) {
+			return "redirect:/analiseAtividades/homeAnalise";
+		} else {
+			 //retornar uma exceção
+			return "mensagem de erro";
+		}
 	}
 }

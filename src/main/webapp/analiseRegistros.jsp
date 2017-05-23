@@ -37,7 +37,7 @@
 							</div>
 							<div class="row botoes">
 								<form method="post" action="${pageContext.request.contextPath}/analiseAtividades/homeAnalise/aprovar/${aluno.id}">
-									<div class="col-md-1">
+									<div class="col-md-1 col-md-offset-1">
 										<button type="submit" class="btn btn-primary">Aprovar</button>
 									</div>
 								</form>
@@ -45,7 +45,7 @@
 									<div class="col-md-1">
 										<button type="submit" class="btn btn-danger">Recusar</button>
 									</div>
-									<div class="col-md-10">
+									<div class="col-md-8">
 										<input class="form-control" type="text" placeholder="Justifique a recusa" name="justificativa" id="justificativa" required />
 									</div>
 								</form>
@@ -60,7 +60,7 @@
 								<c:if test="${aluno.contentType == 'image/jpg' || aluno.contentType == 'image/png'}">
 									<!-- E SE FOR JPG PNG ABRIR O ABAIXO -->
 									<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" data-lightbox="example-1">
-										<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
+										<img class="example-image imagem-certificado" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
 									</a>
 								</c:if>
 							</div>
@@ -80,7 +80,7 @@
 							</div>
 							<div class="row botoes">
 								<form method="post" action="${pageContext.request.contextPath}/analiseAtividades/homeAnalise/aprovar/${aluno.id}">
-									<div class="col-md-1">
+									<div class="col-md-1 col-md-offset-1">
 										<button type="submit" class="btn btn-primary">Aprovar</button>
 									</div>
 								</form>
@@ -88,7 +88,7 @@
 									<div class="col-md-1">
 										<button type="submit" class="btn btn-danger">Recusar</button>
 									</div>
-									<div class="col-md-10">
+									<div class="col-md-8">
 										<input class="form-control" type="text" placeholder="Justifique a recusa" name="justificativa" id="justificativa" required />
 									</div>
 								</form>

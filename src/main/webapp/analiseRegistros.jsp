@@ -5,47 +5,123 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>View</title>
+<title>Avaliar os Registros de Atividade</title>
 <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/css/lightbox.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/estilo.css" rel="stylesheet" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/lightbox.min.js"></script>
 </head>
 <body>
-	<div class="container">
-	
-		<c:forEach items="${atividades}" var="aluno">
-		<div class="row">
-			<h1 class="col-md-12 text-center">Avaliação de Certificados</h1>
-			<p class="col-md-6">Aluno: ${aluno.nome }</p>
-			<p class="col-md-6 text-right">Data: ${aluno.dataSolicitacao }</p>
-		</div>
-		<div class="row">
-			<p class="col-md-6">Categoria: ${aluno.categoria }</p>
-			<p class="col-md-6">Atividade: ${aluno.tipoAtividade }</p>
-			<p class="col-md-6 text-right">Carga-horária: ${aluno.cargaHoraria }</p>
-		</div>
-		<div class="row text-center">
-			<a class="btn btn-danger" href="">Recusar</a>
-			<a class="btn btn-primary" href="">Aprovar</a>		
-		</div>
+
+	<div class="container-fluid">
+		<h1 class="col-md-12 text-center">Avaliação de Certificados</h1>
+
+		<div id="Carrossel" class="carousel slide" data-ride="carousel" data-interval="0">
+
+			<div class="carousel-inner">
+			<c:forEach items="${atividades}" var="aluno" varStatus="loop">
+				<c:choose>
+			      	<c:when test="${loop.index == 0}">
+						<div class="item active">
 		
-		<div class="row text-center">
-			<c:if test="${aluno.contentType == 'application/pdf'}">
-				 <!-- TESTAR O DOCUMENTO SE FOR PDF USAR ABAIXO -->
-				<iframe src = "${pageContext.request.contextPath}/ViewerJS/#../upload/${aluno.nomeArquivo}" width='100%' height='800' allowfullscreen webkitallowfullscreen>
-				</iframe>
-			</c:if>
-			<c:if test="${aluno.contentType == 'image/jpg' || aluno.contentType == 'image/png'}">
-				<!-- E SE FOR JPG PNG ABRIR O ABAIXO -->
-				<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" data-lightbox="example-1">
-					<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
-				</a>
-			</c:if>
-		</div>
-		</c:forEach>
+							<div class="row nome-aluno">
+								<p class="col-md-6">Aluno: <strong>${aluno.nome }</strong></p>
+							</div>
+							<div class="row caracteristicas">
+								<p class="col-md-3 text-center">Data Solicitação: ${aluno.dataSolicitacao }</p>
+								<p class="col-md-3 text-center">Categoria: ${aluno.categoria }</p>
+								<p class="col-md-3 text-center">Atividade: ${aluno.tipoAtividade }</p>
+								<p class="col-md-3 text-center">Carga-horária: ${aluno.cargaHoraria }</p>
+							</div>
+							<div class="row botoes">
+								<form method="post" action="${pageContext.request.contextPath}/analiseAtividades/homeAnalise/aprovar/${aluno.id}">
+									<div class="col-md-1">
+										<button type="submit" class="btn btn-primary">Aprovar</button>
+									</div>
+								</form>
+								<form method="post" action="${pageContext.request.contextPath}/analiseAtividades/homeAnalise/recusar/${aluno.id}">
+									<div class="col-md-1">
+										<button type="submit" class="btn btn-danger">Recusar</button>
+									</div>
+									<div class="col-md-10">
+										<input class="form-control" type="text" placeholder="Justifique a recusa" name="justificativa" id="justificativa" required />
+									</div>
+								</form>
+							</div>
+							
+							<div class="row text-center">
+								<c:if test="${aluno.contentType == 'application/pdf'}">
+									 <!-- TESTAR O DOCUMENTO SE FOR PDF USAR ABAIXO -->
+									<iframe src = "${pageContext.request.contextPath}/ViewerJS/#../upload/${aluno.nomeArquivo}" width='100%' height='800' allowfullscreen webkitallowfullscreen>
+									</iframe>
+								</c:if>
+								<c:if test="${aluno.contentType == 'image/jpg' || aluno.contentType == 'image/png'}">
+									<!-- E SE FOR JPG PNG ABRIR O ABAIXO -->
+									<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" data-lightbox="example-1">
+										<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
+									</a>
+								</c:if>
+							</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="item">
 		
+							<div class="row nome-aluno">
+								<p class="col-md-6">Aluno: <strong>${aluno.nome }</strong></p>
+							</div>
+							<div class="row caracteristicas">
+								<p class="col-md-3 text-center">Data Solicitação: ${aluno.dataSolicitacao }</p>
+								<p class="col-md-3 text-center">Categoria: ${aluno.categoria }</p>
+								<p class="col-md-3 text-center">Atividade: ${aluno.tipoAtividade }</p>
+								<p class="col-md-3 text-center">Carga-horária: ${aluno.cargaHoraria }</p>
+							</div>
+							<div class="row botoes">
+								<form method="post" action="${pageContext.request.contextPath}/analiseAtividades/homeAnalise/aprovar/${aluno.id}">
+									<div class="col-md-1">
+										<button type="submit" class="btn btn-primary">Aprovar</button>
+									</div>
+								</form>
+								<form method="post" action="${pageContext.request.contextPath}/analiseAtividades/homeAnalise/recusar/${aluno.id}">
+									<div class="col-md-1">
+										<button type="submit" class="btn btn-danger">Recusar</button>
+									</div>
+									<div class="col-md-10">
+										<input class="form-control" type="text" placeholder="Justifique a recusa" name="justificativa" id="justificativa" required />
+									</div>
+								</form>
+							</div>
+							
+							<div class="row text-center">
+								<c:if test="${aluno.contentType == 'application/pdf'}">
+									 <!-- TESTAR O DOCUMENTO SE FOR PDF USAR ABAIXO -->
+									<iframe src = "${pageContext.request.contextPath}/ViewerJS/#../upload/${aluno.nomeArquivo}" width='100%' height='800' allowfullscreen webkitallowfullscreen>
+									</iframe>
+								</c:if>
+								<c:if test="${aluno.contentType == 'image/jpg' || aluno.contentType == 'image/png'}">
+									<!-- E SE FOR JPG PNG ABRIR O ABAIXO -->
+									<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" data-lightbox="example-1">
+										<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
+									</a>
+								</c:if>
+							</div>
+		
+						</div>
+					</c:otherwise>
+			    </c:choose> 
+			</c:forEach>
+			</div>
+
+			<a class="left carousel-control" href="#Carrossel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="#Carrossel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+
+		</div>
 	</div>
 </body>
 </html>

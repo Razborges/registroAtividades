@@ -60,7 +60,7 @@
 								<c:if test="${aluno.contentType == 'image/jpg' || aluno.contentType == 'image/png'}">
 									<!-- E SE FOR JPG PNG ABRIR O ABAIXO -->
 									<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" data-lightbox="example-1">
-										<img class="example-image imagem-certificado" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
+										<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" style="max-width: 80%;" />
 									</a>
 								</c:if>
 							</div>
@@ -103,7 +103,7 @@
 								<c:if test="${aluno.contentType == 'image/jpg' || aluno.contentType == 'image/png'}">
 									<!-- E SE FOR JPG PNG ABRIR O ABAIXO -->
 									<a class="example-image-link" href="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" data-lightbox="example-1">
-										<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" />
+										<img class="example-image" src="${pageContext.request.contextPath}/upload/${aluno.nomeArquivo}" style="max-width: 80%;" />
 									</a>
 								</c:if>
 							</div>

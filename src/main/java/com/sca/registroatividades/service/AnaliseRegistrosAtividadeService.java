@@ -25,53 +25,38 @@ public class AnaliseRegistrosAtividadeService {
 		List<Aluno> atividades = new ArrayList<Aluno>();
 		
 		Professor professor = getProfessorByMatricula(matricula);
-		//System.out.println(matricula); // OK
-		//System.out.println(professor.getNome()); // OK
-		
 		List<String> siglasCursos = new ArrayList<String>();
 		
 		siglasCursos = professor.getCursos();
-		//System.out.println(siglasCursos); // OK
 		
 		for(String curso : siglasCursos) {
-			//System.out.println(curso); // OK
 			List<Aluno> aux = alunoRepo.findAlunosByCurso(curso);
 			alunos.addAll(aux);
 		}
 		
-		//System.out.println(alunos); // OK
 		for(Aluno aluno : alunos) {
-			//System.out.println(aluno); // OK
-			//System.out.println(aluno.getEstado()); // OK
 			if(aluno.getEstado().equals("EM_ANÁLISE")){
-				//System.out.println(aluno); // OK
 				atividades.add(aluno);
 			}
 			if(aluno.getEstado().equals("SUBMETIDO")){
-				//System.out.println(aluno); // OK
 				atividades.add(aluno);
 			}
 		}
-		
-		//System.out.println(atividades); //OK
-		
 		return atividades;
 	}
 	
-	public Boolean aprovarRegistroAtividade(String idAluno, String matriculaUsuario) {
+	public void aprovarRegistroAtividade(String idAluno, String matriculaUsuario) {
 		Professor professor = getProfessorByMatricula(matriculaUsuario);
 		Aluno aluno = alunoRepo.findOne(Long.parseLong(idAluno));
 		aluno.aprovarRegistroAtividadeAluno(professor.getId(), professor.getMatricula(), professor.getNome());
 		alunoRepo.save(aluno);
-		return true;
 	}
 	
-	public Boolean recusarRegistroAtividade(String idAluno, String justificativa, String matriculaUsuario) {
+	public void recusarRegistroAtividade(String idAluno, String justificativa, String matriculaUsuario) {
 		Professor professor = getProfessorByMatricula(matriculaUsuario);
 		Aluno aluno = alunoRepo.findOne(Long.parseLong(idAluno));
 		aluno.recusarRegistroAtividadeAluno(justificativa, professor.getId(), professor.getMatricula(), professor.getNome());
 		alunoRepo.save(aluno);
-		return true;
 	}
 	
 	private Professor getProfessorByMatricula(String matricula){

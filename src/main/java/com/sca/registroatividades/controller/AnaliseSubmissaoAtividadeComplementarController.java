@@ -26,30 +26,19 @@ public class AnaliseSubmissaoAtividadeComplementarController {
 	public ModelAndView paginaInicialAnalise(HttpServletRequest request){
 		ModelAndView model = new ModelAndView("/analiseRegistros.jsp");
 		List<Aluno> atividades = service.homeAnaliseAtividades("1111111");
-		//System.out.println(atividades); // OK
 		model.addObject("atividades", atividades);
 		return model;
 	}
 	
 	@RequestMapping(value = "/homeAnalise/aprovar/{id}", method = RequestMethod.POST)
 	public String aprovarAnalise(@PathVariable String id){
-		boolean confirmacao = service.aprovarRegistroAtividade(id, "1111111");
-		if(confirmacao == true) {
-			return "redirect:/analiseAtividades/homeAnalise";
-		} else {
-			 //retornar uma exceção
-			return "mensagem de erro";
-		}
+		service.aprovarRegistroAtividade(id, "1111111");
+		return "redirect:/analiseAtividades/homeAnalise";
 	}
 	
 	@RequestMapping(value = "/homeAnalise/recusar/{id}", method = RequestMethod.POST)
 	public String recusarAnalise(@PathVariable String id, @RequestParam String justificativa){
-		boolean confirmacao = service.recusarRegistroAtividade(id, justificativa, "1111111");
-		if(confirmacao == true) {
-			return "redirect:/analiseAtividades/homeAnalise";
-		} else {
-			 //retornar uma exceção
-			return "mensagem de erro";
-		}
+		service.recusarRegistroAtividade(id, justificativa, "1111111");
+		return "redirect:/analiseAtividades/homeAnalise";
 	}
 }
